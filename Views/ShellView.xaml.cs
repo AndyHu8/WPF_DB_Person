@@ -25,7 +25,6 @@ namespace WPF_DB_Person.Views
         {
             InitializeComponent();
             ThemeManager.Current.ChangeTheme(this, "Light.Blue");
-
         }
     }
 }

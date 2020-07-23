@@ -1,16 +1,21 @@
 ﻿using Caliburn.Micro;
 using Dapper;
+using PropertyChanged;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Windows;
 using WPF_DB_Person.Models;
 
 namespace WPF_DB_Person.ViewModels
 {
     public class ShellViewModel : PropertyChangedBase
     {
+        private string _name;
+
         //readonly Settings Settings;
         public BindableCollection<PersonModel> Personen { get; set; }
         public BindableCollection<PersonModel> SichtbarePersonen { get; set; }
@@ -34,9 +39,21 @@ namespace WPF_DB_Person.ViewModels
         public string Beruf { get; set; }
         public string Warnung { get; set; }
 
+        [DependsOn("Name")]
+        public bool CanSenden
+        {
+            get { 
+                return !string.IsNullOrWhiteSpace(Name) && 
+                    !string.IsNullOrWhiteSpace(Alter) && 
+                    !string.IsNullOrWhiteSpace(Jahr) && 
+                    !string.IsNullOrWhiteSpace(Herkunft) &&
+                    !string.IsNullOrWhiteSpace(Beruf); }           
+        }
+
         public void Senden()
         {
-            if (Name != null && Alter != null && Jahr != null && Herkunft != null && Beruf != null)
+
+            if (CanSenden)
             {
                 var sql = @"INSERT INTO [Test_DB_Andy].[dbo].[T_WPF_Person] (Name, [Alter], Geburtsjahr, Herkunft, Beruf)
                         VALUES(@Name, @Alter, @Geburtsjahr, @Herkunft, @Beruf)";
@@ -89,6 +106,14 @@ namespace WPF_DB_Person.ViewModels
                 || m.Beruf.ToUpper().Contains(Suchtext.ToUpper()));
 
             SichtbarePersonen = new BindableCollection<PersonModel>(sichtbarePersonen); //SichtbarePersonen = Neue Var
+        }
+
+        public void Validate(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Diese Textbox darf nicht leer sein.");
+            }
         }
     }
 }
