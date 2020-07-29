@@ -8,14 +8,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using WPF_DB_Person.Models;
 
 namespace WPF_DB_Person.ViewModels
 {
     public class ShellViewModel : PropertyChangedBase
     {
-        private string _name;
-
         //readonly Settings Settings;
         public BindableCollection<PersonModel> Personen { get; set; }
         public BindableCollection<PersonModel> SichtbarePersonen { get; set; }
@@ -37,9 +37,7 @@ namespace WPF_DB_Person.ViewModels
         public string Jahr { get; set; }
         public string Herkunft { get; set; }
         public string Beruf { get; set; }
-        public string Warnung { get; set; }
 
-        [DependsOn("Name")]
         public bool CanSenden
         {
             get { 
@@ -55,8 +53,8 @@ namespace WPF_DB_Person.ViewModels
 
             if (CanSenden)
             {
-                var sql = @"INSERT INTO [Test_DB_Andy].[dbo].[T_WPF_Person] (Name, [Alter], Geburtsjahr, Herkunft, Beruf)
-                        VALUES(@Name, @Alter, @Geburtsjahr, @Herkunft, @Beruf)";
+                var sql = @"INSERT INTO [Test_DB_Andy].[dbo].[T_WPF_Person] (Name, [Alter], Geburtsjahr, Herkunft, Beruf, Geschlecht, Hobbys, Nachricht)
+                        VALUES(@Name, @Alter, @Geburtsjahr, @Herkunft, @Beruf, @Geschlecht, @Hobbys, @Nachricht)";
 
                 using (IDbConnection connection = new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = Test_DB_Andy; Integrated Security = True"))
                 {
@@ -68,12 +66,7 @@ namespace WPF_DB_Person.ViewModels
                 Jahr = null;
                 Herkunft = null;
                 Beruf = null;
-            }
-            else
-            {
-                Warnung = "Felder, die ein * enthalten, müssen einen Wert haben";
-            }
-            
+            } 
         }
 
         public void Aktualisieren()
@@ -113,6 +106,14 @@ namespace WPF_DB_Person.ViewModels
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("Diese Textbox darf nicht leer sein.");
+            }
+        }
+
+        public void image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
+            {
+                
             }
         }
     }

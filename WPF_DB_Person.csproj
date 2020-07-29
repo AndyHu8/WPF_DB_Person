@@ -118,9 +118,16 @@
     <Compile Include="Infrastructure\DataValidationRule.cs" />
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Infrastructure\PropertyChangedExtension.cs" />
+    <Compile Include="Views\Updaten.xaml.cs">
+      <DependentUpon>Updaten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdatenModel.cs" />
     <Compile Include="Views\ShellViewModel.cs" />
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Update.xaml.cs">
+      <DependentUpon>Update.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -152,7 +159,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Updaten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Update.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
