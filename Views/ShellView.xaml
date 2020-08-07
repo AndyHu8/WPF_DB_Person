@@ -51,7 +51,9 @@
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
                 AutoGenerateColumns="False"
-                IsReadOnly="True" FontSize="10.5">
+                IsReadOnly="True" FontSize="10.5"
+                FrozenColumnCount="1"
+                >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Alter" Binding="{Binding Alter}"/>

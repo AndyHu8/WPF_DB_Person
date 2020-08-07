@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WPF_DB_Person.ViewModels;
+using WPF_DB_Person.ViewModel;
 
 namespace WPF_DB_Person
 {

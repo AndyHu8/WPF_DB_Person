@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WPF_DB_Person
+namespace WPF_DB_Person.Views
 {
     /// <summary>
-    /// Interaktionslogik für Updaten.xaml
+    /// Interaktionslogik für ShowUpdate.xaml
     /// </summary>
-    public partial class Updaten : Window
+    public partial class ShowUpdate : Window
     {
-        public Updaten()
+        public ShowUpdate()
         {
             InitializeComponent();
         }

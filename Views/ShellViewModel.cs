@@ -11,8 +11,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WPF_DB_Person.Models;
+using WPF_DB_Person.Views;
 
-namespace WPF_DB_Person.ViewModels
+namespace WPF_DB_Person.ViewModel
 {
     public class ShellViewModel : PropertyChangedBase
     {
@@ -109,12 +110,10 @@ namespace WPF_DB_Person.ViewModels
             }
         }
 
-        public void image_MouseDown(object sender, MouseButtonEventArgs e)
+        public void Datagrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
-            {
-                
-            }
+            ShowUpdate secondWin = new ShowUpdate(); 
+            secondWin.ShowDialog();
         }
     }
 }
