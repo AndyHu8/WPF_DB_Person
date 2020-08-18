@@ -124,14 +124,11 @@
     <Compile Include="Views\ShellViewModel.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ShowUpdate.xaml.cs">
-      <DependentUpon>ShowUpdate.xaml</DependentUpon>
+    <Compile Include="Views\UpdateView.xaml.cs">
+      <DependentUpon>UpdateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Update.xaml.cs">
-      <DependentUpon>Update.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdatenModel.cs">
-      <DependentUpon>Update.xaml</DependentUpon>
+    <Compile Include="Views\UpdateViewModel.cs">
+      <DependentUpon>UpdateView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -167,14 +164,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ShowUpdate.xaml">
+    <Page Include="Views\UpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Update.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-      <DependentUpon>ShowUpdate.xaml.cs</DependentUpon>
     </Page>
   </ItemGroup>
   <ItemGroup>

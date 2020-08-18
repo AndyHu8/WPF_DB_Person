@@ -17,9 +17,9 @@ namespace WPF_DB_Person.Views
     /// <summary>
     /// Interaktionslogik für ShowUpdate.xaml
     /// </summary>
-    public partial class ShowUpdate : Window
+    public partial class UpdateView : Window
     {
-        public ShowUpdate()
+        public UpdateView()
         {
             InitializeComponent();
         }

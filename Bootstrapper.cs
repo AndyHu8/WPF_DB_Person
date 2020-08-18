@@ -1,12 +1,6 @@
 ﻿using Caliburn.Micro;
-using ControlzEx.Theming;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using WPF_DB_Person.ViewModel;
+using WPF_DB_Person.Views;
 
 namespace WPF_DB_Person
 {

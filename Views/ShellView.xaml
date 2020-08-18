@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:local="clr-namespace:WPF_DB_Person.Views" 
-                      xmlns:wpf_db_person="clr-namespace:WPF_DB_Person" 
+                      xmlns:cal="http://www.caliburnproject.org"
                       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                       xmlns:infrastructure="clr-namespace:WPF_DB_Person.Infrastructure"
                       mc:Ignorable="d"   
@@ -19,7 +18,7 @@
             BorderThickness="1">
                 <Grid Background="Transparent"
               ToolTip="{Binding Path=/ErrorContent}">
-                    <AdornedElementPlaceholder />
+                    <AdornedElementPlaceholder/>
                 </Grid>
             </Border>
         </ControlTemplate>
@@ -53,7 +52,16 @@
                 AutoGenerateColumns="False"
                 IsReadOnly="True" FontSize="10.5"
                 FrozenColumnCount="1"
+           
+                cal:Message.Attach="[Event MouseDoubleClick] = [Action ShowDetails($this)];"
                 >
+            <!--<DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.RowStyle>-->
+
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Alter" Binding="{Binding Alter}"/>

@@ -1,19 +1,14 @@
 ﻿using Caliburn.Micro;
 using Dapper;
-using PropertyChanged;
 using System;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using WPF_DB_Person.Models;
-using WPF_DB_Person.Views;
+using System.Windows.Input;
 
-namespace WPF_DB_Person.ViewModel
+namespace WPF_DB_Person.Views
 {
     public class ShellViewModel : PropertyChangedBase
     {
@@ -42,11 +37,12 @@ namespace WPF_DB_Person.ViewModel
         public bool CanSenden
         {
             get { 
-                return !string.IsNullOrWhiteSpace(Name) && 
-                    !string.IsNullOrWhiteSpace(Alter) && 
-                    !string.IsNullOrWhiteSpace(Jahr) && 
+                return !string.IsNullOrWhiteSpace(Name) &&
+                    !string.IsNullOrWhiteSpace(Alter) &&
+                    !string.IsNullOrWhiteSpace(Jahr) &&
                     !string.IsNullOrWhiteSpace(Herkunft) &&
-                    !string.IsNullOrWhiteSpace(Beruf); }           
+                    !string.IsNullOrWhiteSpace(Beruf);
+            }           
         }
 
         public void Senden()
@@ -110,10 +106,13 @@ namespace WPF_DB_Person.ViewModel
             }
         }
 
-        public void Datagrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        public void ShowDetails(PersonModel e)
         {
-            ShowUpdate secondWin = new ShowUpdate(); 
-            secondWin.ShowDialog();
+            UpdateViewModel updateViewModel = new UpdateViewModel();
+            updateViewModel.Initialize(e);
+            manager.ShowDialog(updateViewModel);
         }
+
+        IWindowManager manager = new WindowManager();
     }
 }
