@@ -52,19 +52,10 @@
                 AutoGenerateColumns="False"
                 IsReadOnly="True" FontSize="10.5"
                 FrozenColumnCount="1"
-           
-                cal:Message.Attach="[Event MouseDoubleClick] = [Action ShowDetails($this)];"
-                >
-            <!--<DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
-                </Style>
-            </DataGrid.RowStyle>-->
-
+                cal:Message.Attach="[Event MouseDoubleClick] = [Action ShowDetails($this)];">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Alter" Binding="{Binding Alter}"/>
                 <DataGridTextColumn Header="Geburtsjahr" Binding="{Binding Geburtsjahr}"/>
                 <DataGridTextColumn Header="Herkunft" Binding="{Binding Herkunft}"/>
                 <DataGridTextColumn Header="Beruf" Binding="{Binding Beruf}"/>
@@ -76,10 +67,8 @@
         <Button x:Name="Aktualisieren" FontSize="15" Grid.Row="6" Grid.Column="0" Margin="15">Aktualisieren</Button>
 
         <!---->
-        <Label Margin="10,0,0,30" Grid.Column="1" Grid.Row="1">Name:*</Label>
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Column="1" Grid.Row="1"/>
-        <Label Margin="10,0,0,30" Grid.Column="1" Grid.Row="2">Alter:*</Label>
-        <TextBox Text="{Binding Alter, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Column="1" Grid.Row="2"/>
+        <Label Margin="10,0,0,30" Grid.Column="1" Grid.Row="2">Name:*</Label>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Column="1" Grid.Row="2"/>
         <Label Margin="10,0,0,30" Grid.Column="1" Grid.Row="3">Geburtsjahr:*</Label>
         <TextBox Text="{Binding Jahr, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Column="1" Grid.Row="3"/>
         

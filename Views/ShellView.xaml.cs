@@ -14,11 +14,5 @@ namespace WPF_DB_Person.Views
             InitializeComponent();
             ThemeManager.Current.ChangeTheme(this, "Light.Blue");
         }
-
-        //public void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    ShowUpdate secondWin = new ShowUpdate();
-        //    secondWin.ShowDialog();
-        //}
     }
 }

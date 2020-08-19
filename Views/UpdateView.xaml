@@ -24,10 +24,8 @@
 
         <Label FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="10">PersonUpdate</Label>
 
-        <Label Grid.Row="1" Margin="10,0,0,30">Name:*</Label>
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="1"/>
-        <Label Margin="10,0,0,30" Grid.Row="2">Alter:*</Label>
-        <TextBox Text="{Binding Alter, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="2"/>
+        <Label Grid.Row="2" Margin="10,0,0,30">Name:*</Label>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="2"/>
         <Label Margin="10,0,0,30" Grid.Row="3">Geburtsjahr:*</Label>
         <TextBox Text="{Binding Jahr, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="3"/>
         <Label Margin="10,0,0,30" Grid.Row="4">Herkunft:*</Label>
@@ -35,13 +33,13 @@
         <Label Margin="10,0,0,30" Grid.Row="5">Beruf:*</Label>
         <TextBox Text="{Binding Beruf, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="5"/>
         <Label Margin="10,0,0,30" Grid.Row="6">Geschlecht:</Label>
-        <RadioButton GroupName="{Binding Geschlecht, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="6">Männlich</RadioButton>
-        <RadioButton GroupName="{Binding Geschlecht, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="100,30,10,10" Grid.Row="6">Weiblich</RadioButton>
+        <RadioButton x:Name="Male" IsChecked="{Binding CheckedMale}" GroupName="{Binding Geschlecht, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="6">Männlich</RadioButton>
+        <RadioButton x:Name="Female" IsChecked="{Binding CheckedFemale}" GroupName="{Binding Geschlecht, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="100,30,10,10" Grid.Row="6">Weiblich</RadioButton>
 
         <Label Margin="10,0,0,30" Grid.Row="7">Hobbys:</Label>
-        <TextBox Text="{Binding Beruf, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="7"/>
+        <TextBox Text="{Binding Hobbys, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="7"/>
         <Label Margin="10,0,0,30" Grid.Row="8">Nachricht:</Label>
-        <TextBox Text="{Binding Beruf, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="8"/>
+        <TextBox Text="{Binding Nachricht, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,30,10,10" Grid.Row="8"/>
 
         <Button x:Name="Updaten" FontSize="15" Grid.Row="9" Margin="15" Content="Updaten"/>
 
