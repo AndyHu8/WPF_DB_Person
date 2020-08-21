@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Caliburn.Micro;
+using WPF_DB_Person.Messages;
 using WPF_DB_Person.Models;
 
 namespace WPF_DB_Person.Views
 {
-    public class UpdateViewModel
+    public class UpdateViewModel : Screen
     {
+        private readonly IEventAggregator eventAggregator;
+
+        public UpdateViewModel(IEventAggregator eventAggregator)
+        {
+            this.eventAggregator = eventAggregator;
+        }
+
         public string Name { get; set; }
         public int? Jahr { get; set; }
         public string Herkunft { get; set; }
@@ -29,7 +32,7 @@ namespace WPF_DB_Person.Views
            Beruf = personModel.Beruf;
         }
 
-        public void Updaten(UpdateViewModel e) //e ist noch null
+        public void Updaten()
         {
             if (CheckedMale == true)
             {
@@ -44,8 +47,18 @@ namespace WPF_DB_Person.Views
                 Geschlecht = null;
             }
 
-            ShellViewModel shellViewModel = new ShellViewModel();
-            shellViewModel.Initialize(e);
+            PersonModel person = new PersonModel { //Übergabe der Daten
+                Name = Name, 
+                Geburtsjahr = Jahr, 
+                Herkunft = Herkunft, 
+                Beruf = Beruf, 
+                Geschlecht = Geschlecht, 
+                Hobbys = Hobbys, 
+                Nachricht = Nachricht 
+            };
+
+            eventAggregator.PublishOnUIThread(new UpdatePerson { Person = person }); //Person von der Klasse UpdatePerson
+            TryClose();
         }
     }
 

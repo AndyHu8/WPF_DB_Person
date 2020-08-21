@@ -5,17 +5,18 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reactive.Linq;
+using WPF_DB_Person.Messages;
 using WPF_DB_Person.Models;
 
 namespace WPF_DB_Person.Views
 {
-    public class ShellViewModel : PropertyChangedBase
+    public class ShellViewModel : PropertyChangedBase, IHandle<UpdatePerson>
     {
         public BindableCollection<PersonModel> Personen { get; set; }
         public BindableCollection<PersonModel> SichtbarePersonen { get; set; }
         public string Suchtext { get; set; }
 
-        public ShellViewModel()
+        public ShellViewModel(IEventAggregator eventAggregator, IWindowManager windowManager)
         {
             this.HasChanged(() => Suchtext)
                 .Merge(this.HasChanged(() => Personen))
@@ -23,6 +24,9 @@ namespace WPF_DB_Person.Views
                 .ObserveOnDispatcher()
                 .Subscribe(_ => SuchePersonen());
             Aktualisieren();
+            this.eventAggregator = eventAggregator;
+            this.windowManager = windowManager;
+            eventAggregator.Subscribe(this);
         }
 
 
@@ -98,24 +102,15 @@ namespace WPF_DB_Person.Views
 
         public void ShowDetails(PersonModel e)
         {
-            UpdateViewModel updateViewModel = new UpdateViewModel();
+            UpdateViewModel updateViewModel = new UpdateViewModel(eventAggregator);
             updateViewModel.Initialize(e);
             manager.ShowDialog(updateViewModel);
         }
         IWindowManager manager = new WindowManager();
+        private readonly IEventAggregator eventAggregator;
+        private readonly IWindowManager windowManager;
 
-        public void Initialize(UpdateViewModel updateViewModel)
-        {
-            Name = updateViewModel.Name;
-            Jahr = updateViewModel.Jahr;
-            Herkunft = updateViewModel.Herkunft;
-            Beruf = updateViewModel.Beruf;
-            Geschlecht = updateViewModel.Geschlecht;
-            Hobbys = updateViewModel.Hobbys;
-            Nachricht = updateViewModel.Nachricht;
-        }
-
-        public void UpdateData()
+        public void UpdateData(PersonModel person)
         {
             var sql = @"UPDATE [Test_DB_Andy].[dbo].[T_WPF_Persons] SET Name = @Name, Geburtsjahr = @Geburtsjahr,
                         Herkunft = @Herkunft, Beruf = @Beruf, Geschlecht = @Geschlecht, Hobbys = @Hobbys, Nachricht = @Nachricht
@@ -123,8 +118,14 @@ namespace WPF_DB_Person.Views
 
             using (IDbConnection connection = new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = Test_DB_Andy; Integrated Security = True"))
             {
-                connection.Execute(sql, new PersonModel { Name = Name, Geburtsjahr = Jahr, Herkunft = Herkunft, Beruf = Beruf, Geschlecht = Geschlecht, Hobbys = Hobbys, Nachricht = Nachricht });
+                connection.Execute(sql, person);
             }
+        }
+
+        public void Handle(UpdatePerson message)
+        {
+            UpdateData(message.Person);
+            Aktualisieren();
         }
     }
 }
